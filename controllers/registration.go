@@ -140,7 +140,7 @@ func RegisterUser(c *gin.Context) {
 		"expires_in": jwt.ExpiresIn,
         "refresh_token": jwt.RefreshToken,
 		"refresh_expires_in": jwt.RefreshExpiresIn,
-        "roles": []string{"org_admin"}, // or fetch dynamically
+        "roles": []string{orgAdminName}, // or fetch dynamically
 		"not-before-policy": jwt.NotBeforePolicy,
 		"session_state": jwt.SessionState,
 		"scope": jwt.Scope,
@@ -225,6 +225,7 @@ func createUserInRealm(ctx context.Context, client *gocloak.GoCloak, token, real
     userID, err := client.CreateUser(ctx, token, realm, newUser)
     return userID, err
 }
+
 func addRealmRoleToUser(ctx context.Context, client *gocloak.GoCloak, token, realm, userID, roleName string) error {
     // Retrieve the role by name
     role, err := client.GetRealmRole(ctx, token, realm, roleName)
