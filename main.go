@@ -12,7 +12,8 @@ func main() {
 	r := gin.Default()
 
 	// Public route (e.g., login or health check)
-	r.POST("/RegisterUser", controllers.RegisterUser)
+	r.POST("/registration", controllers.RegisterUser)
+	r.POST("/login", controllers.LoginUser)
 
 	// Protected routes
 	protected := r.Group("/api")
